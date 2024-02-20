@@ -1,0 +1,13 @@
+:root {
+    --dark-blue: #002772;
+    --light-pink: #FDE2FF;
+    --dark: #1E1E1E;
+    --purple: #720060;
+    --light-blue: #D6E6FF;
+    --dark-brown: #3F3F3F;
+    --grey: #DCDCDC;
+}
+
+* {
+    box-sizing: border-box;
+}
