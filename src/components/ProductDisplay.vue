@@ -114,7 +114,7 @@ export default {
   width: 1034px;
   height: 580px;
 
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 10px;
   margin: 125px auto;
 }
@@ -199,7 +199,7 @@ export default {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: #fff;
+  color: var(--white);
 
   border-radius: 4px;
   padding: 9px 88px;
