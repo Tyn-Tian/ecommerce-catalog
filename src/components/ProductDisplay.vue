@@ -1,11 +1,11 @@
 <template>
-  <div class="bg" :class="bgClass"></div>
+  <div class="background" :class="backgroundClass"></div>
   <div v-if="dataProduct">
     <div class="container product-container">
       <img :src="dataProduct.image" alt="Product Image" />
-      <div class="data-product">
+      <div class="data-product" :class="genderClass">
         <div>
-          <h3 class="title men-color">{{ dataProduct.title }}</h3>
+          <h3 class="title">{{ dataProduct.title }}</h3>
           <div class="rating-container">
             <p class="category">{{ dataProduct.category }}</p>
             <div>
@@ -15,11 +15,9 @@
           <p class="description">{{ dataProduct.description }}</p>
         </div>
         <div class="bottom">
-          <h4 class="price men-color">${{ dataProduct.price }}</h4>
+          <h4 class="price">${{ dataProduct.price }}</h4>
           <div class="button-container">
-            <button class="buy-btn men-background men-border-color">
-              Buy Now
-            </button>
+            <button class="buy-btn">Buy Now</button>
             <button
               class="next-btn men-border-color men-color"
               @click="increment"
@@ -48,14 +46,21 @@ export default {
     };
   },
   computed: {
-    bgClass() {
+    backgroundClass() {
       if (this.dataProduct) {
         return this.dataProduct.category.includes("women")
-          ? "pattern women"
-          : "pattern men";
+          ? "pattern light-pink"
+          : "pattern light-blue";
       }
       return "unavailable";
     },
+    genderClass() {
+      if (this.dataProduct) {
+        return this.dataProduct.category.includes("women")
+          ? "women"
+          : "men"
+      }
+    }
   },
   methods: {
     async fetchData() {
@@ -83,7 +88,7 @@ export default {
 </script>
 
 <style scoped>
-.bg {
+.background {
   height: 548px;
 }
 
@@ -93,11 +98,11 @@ export default {
   background-size: cover;
 }
 
-.women {
+.light-pink {
   background-color: var(--light-pink);
 }
 
-.men {
+.light-blue {
   background-color: var(--light-blue);
 }
 
@@ -149,6 +154,14 @@ export default {
   margin-bottom: 17px;
 }
 
+.men .title {
+  color: var(--dark-blue);
+}
+
+.women .title {
+  color: var(--purple);
+}
+
 .data-product .rating-container {
   display: flex;
   justify-content: space-between;
@@ -190,41 +203,57 @@ export default {
   margin-bottom: 15px;
 }
 
+.men .bottom .price {
+  color: var(--dark-blue);
+}
+
+.women .bottom .price {
+  color: var(--purple);
+}
+
 .bottom .button-container {
   display: flex;
   justify-content: space-between;
 }
 
-.button-container .buy-btn {
+.button-container button {
+  cursor: pointer;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: var(--white);
 
   border-radius: 4px;
+}
+
+.button-container .buy-btn {
+  color: var(--white);
+
   padding: 9px 88px;
 }
 
-.button-container .next-btn {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+.men .button-container .buy-btn {
+  background-color: var(--dark-blue);
+}
 
-  border-radius: 4px;
+.women .button-container .buy-btn {
+  background-color: var(--purple);
+}
+
+.button-container .next-btn {
+  background-color: transparent;
+
   border: 3px solid;
   padding: 9px 66px;
 }
 
-.men-color {
+.men .button-container .next-btn {
   color: var(--dark-blue);
-}
-
-.men-background {
-  background-color: var(--dark-blue);
-}
-
-.men-border-color {
   border-color: var(--dark-blue);
+}
+
+.women .button-container .next-btn {
+  color: var(--purple);
+  border-color: var(--purple);
 }
 
 .unavailable-container {
