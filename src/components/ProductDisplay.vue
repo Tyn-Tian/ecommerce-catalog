@@ -164,15 +164,22 @@ export default {
 }
 
 .data-product .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   color: var(--dark);
+
+  overflow: hidden;
 }
 
 .data-product .bottom {
-  padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 21px;
+  padding-top: 16px;
 }
 
 .bottom .price {
