@@ -1,8 +1,34 @@
 <template>
   <div class="bg" :class="bgClass"></div>
   <div v-if="dataProduct">
-    <div class="container">
-      <button @click="increment">Next Product</button>
+    <div class="container product-container">
+      <img :src="dataProduct.image" alt="Product Image" />
+      <div class="data-product">
+        <div>
+          <h3 class="title men-color">{{ dataProduct.title }}</h3>
+          <div class="rating-container">
+            <p class="category">{{ dataProduct.category }}</p>
+            <div>
+              <p class="rating">{{ dataProduct.rating.rate }}/5</p>
+            </div>
+          </div>
+          <p class="description">{{ dataProduct.description }}</p>
+        </div>
+        <div class="bottom">
+          <h4 class="price men-color">${{ dataProduct.price }}</h4>
+          <div class="button-container">
+            <button class="buy-btn men-background men-border-color">
+              Buy Now
+            </button>
+            <button
+              class="next-btn men-border-color men-color"
+              @click="increment"
+            >
+              Next Product
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div v-else>
@@ -93,6 +119,107 @@ export default {
   margin: 125px auto;
 }
 
+.product-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 68px;
+
+  box-shadow: 2px 4px 21px rgba(0, 0, 0, 0.2), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 50px 56px 46px;
+}
+
+.product-container img {
+  width: 300px;
+}
+
+.product-container .data-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.data-product .title {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+
+  margin-bottom: 17px;
+}
+
+.data-product .rating-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--dark-brown);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 21px;
+  padding-bottom: 11px;
+}
+
+.data-product .description {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--dark);
+}
+
+.data-product .bottom {
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.bottom .price {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+
+  margin-bottom: 15px;
+}
+
+.bottom .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container .buy-btn {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+
+  border-radius: 4px;
+  padding: 9px 88px;
+}
+
+.button-container .next-btn {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  border-radius: 4px;
+  border: 3px solid;
+  padding: 9px 66px;
+}
+
+.men-color {
+  color: var(--dark-blue);
+}
+
+.men-background {
+  background-color: var(--dark-blue);
+}
+
+.men-border-color {
+  border-color: var(--dark-blue);
+}
+
 .unavailable-container {
   display: flex;
   flex-direction: column;
@@ -103,7 +230,7 @@ export default {
   background-image: url(../assets/sad-face.png);
   background-repeat: no-repeat;
   background-position: 65px center;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .unavailable-container p {
