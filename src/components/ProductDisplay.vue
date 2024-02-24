@@ -8,8 +8,11 @@
           <h3 class="title">{{ dataProduct.title }}</h3>
           <div class="rating-container">
             <p class="category">{{ dataProduct.category }}</p>
-            <div>
+            <div class="rating-point">
               <p class="rating">{{ dataProduct.rating.rate }}/5</p>
+              <div class="rating-bullet-container">
+                <div class="rating-bullet" v-for="i in 5"></div>
+              </div>
             </div>
           </div>
           <p class="description">{{ dataProduct.description }}</p>
@@ -56,11 +59,9 @@ export default {
     },
     genderClass() {
       if (this.dataProduct) {
-        return this.dataProduct.category.includes("women")
-          ? "women"
-          : "men"
+        return this.dataProduct.category.includes("women") ? "women" : "men";
       }
-    }
+    },
   },
   methods: {
     async fetchData() {
@@ -174,6 +175,34 @@ export default {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 21px;
   padding-bottom: 11px;
+}
+
+.rating-container .rating-point {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rating-point .rating-bullet-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.rating-point .rating-bullet {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.men .rating-point .rating-bullet {
+  border: 1px solid var(--dark-blue);
+}
+
+.women .rating-point .rating-bullet {
+  border: 1px solid var(--purple);
 }
 
 .data-product .description {
