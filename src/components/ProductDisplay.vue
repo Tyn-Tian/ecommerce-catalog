@@ -11,7 +11,11 @@
             <div class="rating-point flex-align-center">
               <p class="rating">{{ dataProduct.rating.rate }}/5</p>
               <div class="rating-bullet-container flex-align-center">
-                <div class="rating-bullet" v-for="i in 5"></div>
+                <div
+                  class="rating-bullet"
+                  :class="{ active: i <= Math.round(dataProduct.rating.rate) }"
+                  v-for="i in 5"
+                ></div>
               </div>
             </div>
           </div>
@@ -73,6 +77,7 @@ export default {
         data.category.includes("clothing")
           ? (this.dataProduct = data)
           : (this.dataProduct = null);
+        console.log(data);
       } catch (error) {
         console.error(`Error fetcing data: ${error}`);
       }
@@ -207,8 +212,15 @@ export default {
   border: 1px solid var(--dark-blue);
 }
 
+.men .rating-point .rating-bullet.active {
+  background-color: var(--dark-blue);
+}
+
 .women .rating-point .rating-bullet {
   border: 1px solid var(--purple);
+}
+.women .rating-point .rating-bullet.active {
+  background-color: var(--purple);
 }
 
 .data-product .description {
