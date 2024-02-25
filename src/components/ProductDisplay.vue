@@ -1,16 +1,16 @@
 <template>
   <div class="background" :class="backgroundClass"></div>
   <div v-if="dataProduct">
-    <div class="container product-container">
+    <div class="container product-container flex-align-center">
       <img :src="dataProduct.image" alt="Product Image" />
       <div class="data-product" :class="genderClass">
         <div>
           <h3 class="title">{{ dataProduct.title }}</h3>
-          <div class="rating-container">
+          <div class="rating-container flex-align-center">
             <p class="category">{{ dataProduct.category }}</p>
-            <div class="rating-point">
+            <div class="rating-point flex-align-center">
               <p class="rating">{{ dataProduct.rating.rate }}/5</p>
-              <div class="rating-bullet-container">
+              <div class="rating-bullet-container flex-align-center">
                 <div class="rating-bullet" v-for="i in 5"></div>
               </div>
             </div>
@@ -20,9 +20,9 @@
         <div class="bottom">
           <h4 class="price">${{ dataProduct.price }}</h4>
           <div class="button-container">
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn btn">Buy Now</button>
             <button
-              class="next-btn men-border-color men-color"
+              class="next-btn btn men-border-color men-color"
               @click="nextProduct"
             >
               Next Product
@@ -33,9 +33,9 @@
     </div>
   </div>
   <div v-else>
-    <div class="container unavailable-container">
+    <div class="container unavailable-container flex-align-center">
       <p>This product is unavailable to show</p>
-      <button @click="nextProduct">Next Product</button>
+      <button class="btn" @click="nextProduct">Next Product</button>
     </div>
   </div>
 </template>
@@ -89,6 +89,34 @@ export default {
 </script>
 
 <style scoped>
+.btn {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 1034px;
+  height: 580px;
+
+  background-color: var(--white);
+  border-radius: 10px;
+  margin: 125px auto;
+}
 .background {
   height: 548px;
 }
@@ -111,24 +139,8 @@ export default {
   background-color: var(--grey);
 }
 
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  width: 1034px;
-  height: 580px;
-
-  background-color: var(--white);
-  border-radius: 10px;
-  margin: 125px auto;
-}
-
 .product-container {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 68px;
 
   box-shadow: 2px 4px 21px rgba(0, 0, 0, 0.2), 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -164,9 +176,7 @@ export default {
 }
 
 .data-product .rating-container {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
 
   font-weight: 400;
   font-size: 18px;
@@ -178,14 +188,10 @@ export default {
 }
 
 .rating-container .rating-point {
-  display: flex;
-  align-items: center;
   gap: 5px;
 }
 
 .rating-point .rating-bullet-container {
-  display: flex;
-  align-items: center;
   gap: 2px;
 }
 
@@ -245,15 +251,6 @@ export default {
   justify-content: space-between;
 }
 
-.button-container button {
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-
-  border-radius: 4px;
-}
-
 .button-container .buy-btn {
   color: var(--white);
 
@@ -286,9 +283,7 @@ export default {
 }
 
 .unavailable-container {
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   gap: 13px;
 
@@ -305,15 +300,10 @@ export default {
 }
 
 .unavailable-container button {
-  font-weight: 600;
-  font-size: 20px;
   color: var(--dark-brown);
 
   background-color: transparent;
   border: 3px solid #000;
-  border-radius: 4px;
   padding: 9px 169px;
-
-  cursor: pointer;
 }
 </style>
