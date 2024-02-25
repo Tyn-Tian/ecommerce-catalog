@@ -23,7 +23,7 @@
             <button class="buy-btn">Buy Now</button>
             <button
               class="next-btn men-border-color men-color"
-              @click="increment"
+              @click="nextProduct"
             >
               Next Product
             </button>
@@ -35,7 +35,7 @@
   <div v-else>
     <div class="container unavailable-container">
       <p>This product is unavailable to show</p>
-      <button @click="increment">Next Product</button>
+      <button @click="nextProduct">Next Product</button>
     </div>
   </div>
 </template>
@@ -77,7 +77,7 @@ export default {
         console.error(`Error fetcing data: ${error}`);
       }
     },
-    increment() {
+    nextProduct() {
       this.index == 20 ? (this.index = 1) : this.index++;
       this.fetchData();
     },
