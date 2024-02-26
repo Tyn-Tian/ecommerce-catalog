@@ -1,58 +1,60 @@
 <template>
-  <div class="background" :class="backgroundClass"></div>
+  <div :class="genderClass">
+    <div class="background"></div>
 
-  <Loader v-if="!showProduct" />
+    <Loader v-if="!showProduct" />
 
-  <div v-else>
-    <div v-if="dataProduct">
-      <div class="container product-container flex-align-center">
-        <img :src="dataProduct.image" alt="Product Image" />
-        <div class="data-product" :class="genderClass">
-          <div>
-            <h3 class="title">{{ dataProduct.title }}</h3>
-            <div class="rating-container flex-align-center">
-              <p class="category">{{ dataProduct.category }}</p>
-              <div class="rating-point flex-align-center">
-                <p class="rating">{{ dataProduct.rating.rate }}/5</p>
-                <div class="rating-bullet-container flex-align-center">
-                  <div
-                    class="rating-bullet"
-                    :class="{
-                      active: i <= Math.round(dataProduct.rating.rate),
-                    }"
-                    v-for="i in 5"
-                  ></div>
+    <div v-else>
+      <div v-if="dataProduct">
+        <div class="container product-container flex-align-center">
+          <img :src="dataProduct.image" alt="Product Image" />
+          <div class="data-product">
+            <div>
+              <h3 class="title">{{ dataProduct.title }}</h3>
+              <div class="rating-container flex-align-center">
+                <p class="category">{{ dataProduct.category }}</p>
+                <div class="rating-point flex-align-center">
+                  <p class="rating">{{ dataProduct.rating.rate }}/5</p>
+                  <div class="rating-bullet-container flex-align-center">
+                    <div
+                      class="rating-bullet"
+                      :class="{
+                        active: i <= Math.round(dataProduct.rating.rate),
+                      }"
+                      v-for="i in 5"
+                    ></div>
+                  </div>
                 </div>
               </div>
+              <p class="description">{{ dataProduct.description }}</p>
             </div>
-            <p class="description">{{ dataProduct.description }}</p>
-          </div>
-          <div class="bottom">
-            <h4 class="price">${{ dataProduct.price }}</h4>
-            <div class="button-container">
-              <button class="buy-btn btn">Buy Now</button>
-              <button
-                class="next-btn btn men-border-color men-color"
-                @click="nextProduct"
-              >
-                Next Product
-              </button>
+            <div class="bottom">
+              <h4 class="price">${{ dataProduct.price }}</h4>
+              <div class="button-container">
+                <button class="buy-btn btn">Buy Now</button>
+                <button
+                  class="next-btn btn men-border-color men-color"
+                  @click="nextProduct"
+                >
+                  Next Product
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-else>
-      <div class="container unavailable-container flex-align-center">
-        <p>This product is unavailable to show</p>
-        <button class="btn" @click="nextProduct">Next Product</button>
+      <div v-else>
+        <div class="container unavailable-container flex-align-center">
+          <p>This product is unavailable to show</p>
+          <button class="btn" @click="nextProduct">Next Product</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Loader from './Loader.vue'
+import Loader from "./Loader.vue";
 
 export default {
   components: {
@@ -66,23 +68,17 @@ export default {
     };
   },
   computed: {
-    backgroundClass() {
-      if (this.dataProduct) {
-        return this.dataProduct.category.includes("women")
-          ? "pattern light-pink"
-          : "pattern light-blue";
-      }
-      return "unavailable";
-    },
     genderClass() {
       if (this.dataProduct) {
-        return this.dataProduct.category.includes("women") ? "women" : "men";
+        return this.dataProduct.category.includes("women")
+          ? "women pattern"
+          : "men pattern";
       }
     },
   },
   methods: {
     async fetchData() {
-      this.showProduct = false
+      this.showProduct = false;
       try {
         const response = await fetch(
           `https://fakestoreapi.com/products/${this.index}`
@@ -91,7 +87,7 @@ export default {
         data.category.includes("clothing")
           ? (this.dataProduct = data)
           : (this.dataProduct = null);
-        this.showProduct = true
+        this.showProduct = true;
       } catch (error) {
         console.error(`Error fetcing data: ${error}`);
       }
@@ -138,24 +134,22 @@ export default {
 }
 .background {
   height: 548px;
+
+  background-color: var(--grey);
 }
 
-.pattern {
-  background-image: url(../assets/pattern.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.light-pink {
-  background-color: var(--light-pink);
-}
-
-.light-blue {
+.men .background {
   background-color: var(--light-blue);
 }
 
-.unavailable {
-  background-color: var(--grey);
+.women .background {
+  background-color: var(--light-pink);
+}
+
+.pattern .background {
+  background-image: url(../assets/pattern.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .product-container {
