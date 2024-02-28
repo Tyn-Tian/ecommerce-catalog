@@ -69,6 +69,7 @@ export default {
     };
   },
   computed: {
+    // determine gender class 
     genderClass() {
       if (this.dataProduct) {
         return this.dataProduct.category.includes("women")
@@ -78,6 +79,7 @@ export default {
     },
   },
   methods: {
+    // function to fetch API and save data if category includes "clothing". After that show product container
     async fetchData() {
       this.showProduct = false;
       try {
@@ -93,6 +95,7 @@ export default {
         console.error(`Error fetcing data: ${error}`);
       }
     },
+    // function to increase index and fetch API again
     nextProduct() {
       this.index == 20 ? (this.index = 1) : this.index++;
       this.fetchData();
