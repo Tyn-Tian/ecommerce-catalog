@@ -9,7 +9,7 @@
         <div class="container product-container flex-align-center">
           <img :src="dataProduct.image" alt="Product Image" />
           <div class="data-product">
-            <div>
+            <article>
               <h3 class="title">{{ dataProduct.title }}</h3>
               <div class="rating-container flex-align-center">
                 <p class="category">{{ dataProduct.category }}</p>
@@ -27,8 +27,8 @@
                 </div>
               </div>
               <p class="description">{{ dataProduct.description }}</p>
-            </div>
-            <div class="bottom">
+            </article>
+            <article class="bottom">
               <h4 class="price">${{ dataProduct.price }}</h4>
               <div class="button-container">
                 <button class="buy-btn btn">Buy Now</button>
@@ -39,10 +39,11 @@
                   Next Product
                 </button>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </div>
+
       <div v-else>
         <div class="container unavailable-container flex-align-center">
           <p>This product is unavailable to show</p>
