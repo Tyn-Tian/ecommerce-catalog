@@ -147,7 +147,7 @@ export default {
 }
 
 .pattern .background {
-  background-image: url(../assets/pattern.svg);
+  background-image: url(../assets/img/pattern.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -307,7 +307,7 @@ export default {
   justify-content: center;
   gap: 13px;
 
-  background-image: url(../assets/sad-face.png);
+  background-image: url(../assets/img/sad-face.png);
   background-repeat: no-repeat;
   background-position: 65px center;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
